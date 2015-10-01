@@ -4,13 +4,11 @@ html, body{
     background:#303030;
 }
 
-.navBar{
+.navBar nav{
  position:relative;
- width:100%;
- height:56px;
- background: #4e64e0;
+ background-color: #4e64e0!important;
  box-shadow: 2px 0px 7px 1px #222;
- top:-56px;
+ top:-64px;
 }
 
 .darkCard{
@@ -37,5 +35,9 @@ html, body{
     font: 300 24px "Roboto", sans-serif;
     line-height: 56px;
     color:#FFF;
-    margin-left:15px;
+    margin-left: 15px;
+    
+}
+.titleContainer{
+    margin-left:-100%;   
 }
