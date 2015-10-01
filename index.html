@@ -3,37 +3,43 @@
          <!-- Compiled and minified CSS -->
  <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
+ <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-      <!--Let browser know website is optimized for mobile-->
+      <link rel="stylesheet" href="css/styles.css"/>   
+ <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="stylesheet" href="css/styles.css"/>   
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"> 
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"> 
+      
+       
      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-<script src="https://cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script> 
+ <!--Import Materialize JS file -->
+     <script type="text/javascript" src="js/materialize.min.js"></script>
+ <!--Import Velocity.JS -->
+     <script src="https://cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script> 
 
 </head>
 <body>
  <div class="navbar-fixed navBar">
     <nav>  
       <div class="nav-wrapper">
-         <a href="#!" class="brand-logo titleFont">toDone</a> 
-        <ul class="right hide-on-med-and-down">
-          <li><a href="sass.html">Dashboard</a></li>
-          <li><a href="badges.html">Lists</a></li>
-        </ul>
+         <a href="#!" class="brand-logo titleFont"><span class="todone-1">t</span><span class="todone-2">o</span><span class="todone-3">D</span><span class="todone-4">o</span><span class="todone-5">n</span><span class="todone-6">e</span></a> 
+         <ul class="right hide-on-med-and-down">
+            <li><a href="sass.html">Dashboard</a></li>
+            <li><a href="badges.html">Lists</a></li>
+         </ul>
         <ul class="side-nav" id="sideNav">
-        <li><a href="sass.html">Dashboard</a></li>
-          <li><a href="badges.html">Lists</a></li>
-      </ul>
-          <a href="#" data-activates="sideNav" class="button-collapse"><i class="material-icons">menu</i></a>
+            <li><a href="sass.html">Dashboard</a></li>
+            <li><a href="badges.html">Lists</a></li>
+        </ul>
+        <a href="#" data-activates="sideNav" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
     </nav>
-  </div>
-<div class="card darkCard content">
-    
+</div>
+<div class="content">
+    <input class="todoEntry" name="todoEntry" type="text" placeholder="Enter your todo here"/><input class="todoEntryButton" type="submit" name="todoEntrySave" />
+    <div class="card darkCard todoItem-1">
+        
+    </div>
 </div>
     <script src="js/main.js"></script>
 </body>

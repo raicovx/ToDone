@@ -1,9 +1,12 @@
+/* Global */
 html, body{
     padding:0;
     margin:0;
     background:#303030;
 }
+/* End Global */
 
+/* NavBar / Side Nav */
 .navBar nav{
  position:relative;
  background-color: #4e64e0!important;
@@ -11,25 +14,7 @@ html, body{
  top:-64px;
 }
 
-.darkCard{
-    background-color:#424242!important;  
-}
 
-.content{
-    width:90%;
-    min-height:56px;
-    height:auto;
-    margin:15px auto 0 auto!important;
-    color: #FFF;
-    line-height:56px;
-    font-size:1.5rem;
-    padding:0 15px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-/*Typography*/
 
 .titleFont{
     font: 300 24px "Roboto", sans-serif;
@@ -38,6 +23,67 @@ html, body{
     margin-left: 15px;
     
 }
-.titleContainer{
-    margin-left:-100%;   
+.side-nav{
+    background-color: #424242!important;
+}
+.side-nav li:hover, .side-nav li.active{
+    background-color: #4e64e0!important; 
+}
+.side-nav li{
+border-bottom: 1px solid #303030;
+}
+.side-nav li a{
+    color:#FFF!important;   
+}
+/* End NavBar / Side Nav */
+
+/* Content */
+/* Todo Entry Styling */
+.todoEntry{
+   width:90%!important;
+    min-height:48px;
+   padding:0 15px!important;
+   background-color:#303030!important;
+   box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.3)!important; 
+   border:none!important;
+   color:#FFF; 
+   line-height:48px;
+   margin: 0 0 15px 0;
+   font-size:24px!important;
+   box-sizing: border-box!important;
+}
+.todoEntry:focus{
+   border-bottom:none!important;
+}
+input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+    border-bottom:none!important;
+    box-shadow: none;
+}
+.todoEntryButton{
+    min-height: 48px;
+    line-height:48px;
+    width: 8%;
+    margin:0 1% 0 1%;
+    color:#FFF;
+    background-color:#4e64e0;
+    border-radius:5px;
+    border:none;
+    box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.3)!important;
+}
+/* Todo Entry Styling End */
+.darkCard{
+    background-color:#424242!important;
+    min-height:56px;
+    width:100%;
+    height:auto;
+    margin: 15px 0!important;
+    color: #FFF;
+    line-height:56px;
+    font-size:1.5rem;
+    padding:0 15px!important;
+    box-sizing: border-box;
+}
+.content{
+    width:90%;
+    margin:15px auto 0 auto!important;
 }
