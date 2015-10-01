@@ -3,6 +3,13 @@ $(document).ready(function(){
 
     initialAnimations();
     $(".button-collapse").sideNav();
+    $('.todoEntryButton').on("click", function(){
+         var todoText = $('.todoEntry').val();
+         var todoListLength = $('.todoList').length;
+         var todoListLengthNew = ($('.todoList').length)+1;
+         $('.todoList').append("<div class=\"card darkCard todoItem-"+todoListLengthNew+"\">"+todoText+"</div>");
+    });
+    
 });
 
 function initialAnimations(){
