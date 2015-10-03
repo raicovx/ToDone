@@ -51,6 +51,9 @@ border-bottom: 1px solid #303030;
    margin: 0 0 15px 0;
    font-size:24px!important;
    box-sizing: border-box!important;
+   position:relative;
+   float:left;
+   
 }
 .todoEntry:focus{
    border-bottom:none!important;
@@ -69,6 +72,8 @@ input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly
     border-radius:5px;
     border:none;
     box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.3)!important;
+    position:relative;
+    float:left;
 }
 /* Todo Entry Styling End */
 .darkCard{
