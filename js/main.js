@@ -21,5 +21,6 @@ function initialCardAnimation(todoItemNumber){
 function CreateTodo(todoText,todoListLengthNew){
     $('.todoList').append("<div class=\"card darkCard todoItem-"+todoListLengthNew+"\">"+todoText+"</div>");
     $('.todoItem-'+todoListLengthNew).hide().velocity({scale: "0.5"},{duration:0}).show();
+    $('.todoEntry').val("");
     initialCardAnimation(todoListLengthNew);
 }
