@@ -12,6 +12,25 @@ html, body{
 
 /*End Toast Style Override */
 
+/* Placeholder Values */
+::-webkit-input-placeholder {
+   line-height: 48px; 
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  line-height: 48px;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   line-height: 48px; 
+}
+
+:-ms-input-placeholder {  
+  line-height: 48px; 
+}
+
+/* End Placeholder Values */
+
 /* End Global */
 
 /* NavBar / Side Nav */
