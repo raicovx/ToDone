@@ -48,7 +48,7 @@ border-bottom: 1px solid #303030;
 /* Content */
 /* Todo Entry Styling */
 .todoEntry{
-   width:90%!important;
+   width:50%!important;
     min-height:48px;
    padding:0 15px!important;
    background-color:#303030!important;
@@ -65,6 +65,21 @@ border-bottom: 1px solid #303030;
 }
 .todoEntry:focus{
    border-bottom:none!important;
+}
+.todoDateEntry{
+  width:30%!important;
+    min-height:48px;
+   padding:0 15px!important;
+   background-color:#303030!important;
+   box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.3)!important; 
+   border:none!important;
+   color:#FFF; 
+   line-height:48px;
+   margin: 0 0 15px 15px!important;
+   font-size:24px!important;
+   box-sizing: border-box!important;
+   position:relative;
+   float:left;   
 }
 input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
     border-bottom:none!important;

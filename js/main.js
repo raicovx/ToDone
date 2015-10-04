@@ -1,6 +1,10 @@
 $(document).ready(function(){
     initialAnimations();
     $(".button-collapse").sideNav();
+     $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
     $('.todoEntryButton').on("click", function(){
       var todoEntryFieldLength = $('.todoEntry').val().length;
             if(todoEntryFieldLength > 0){
