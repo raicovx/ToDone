@@ -1,4 +1,56 @@
+var toDone = {};
+toDone.webdb = {};
 $(document).ready(function(){
+    toDone.webdb.db = null;
+    
+    toDone.webdb.open = function(){
+        var dbsize = 5 * 1024 * 1024; //5MB
+        toDone.webdb.db = openDatabase("Todo", "1", "Todo Manager", dbsize);      
+    }
+    
+    toDone.webdb.onError = function(tx, e) {
+        alert("There has been an error: " + e.message);
+    }
+    
+    toDone.webdb.onSuccess = function(tx, r) {
+        // re-render the data.
+        toDone.webdb.getAllTodoItems(loadTodoItems);
+    }
+    
+    toDone.webdb.createTable = function() {
+        var db = toDone.webdb.db;
+        db.transaction(function(tx) {
+        tx.executeSql("CREATE TABLE IF NOT EXISTS " + "todo(ID INTEGER PRIMARY KEY ASC, todo TEXT, added_on DATETIME)", []);
+        });
+    }
+    toDone.webdb.addTodo = function(todoText) {
+      var db = toDone.webdb.db;
+      db.transaction(function(tx){
+        var addedOn = new Date();
+        tx.executeSql("INSERT INTO todo(todo, added_on) VALUES (?,?)",
+        [todoText, addedOn],
+        toDone.webdb.onSuccess,
+        toDone.webdb.onError);
+      });
+    }
+    toDone.webdb.getAllTodoItems = function(renderFunc) {
+      var db = toDone.webdb.db;
+      db.transaction(function(tx) {
+        tx.executeSql("SELECT * FROM todo", [], renderFunc,
+            toDone.webdb.onError);
+      });
+    }
+    
+    toDone.webdb.deleteTodo = function(id) {
+      var db = toDone.webdb.db;
+      db.transaction(function(tx){
+        tx.executeSql("DELETE FROM todo WHERE ID=?", [id],
+            toDone.webdb.onSuccess,
+            toDone.webdb.onError);
+        });
+    }
+ 
+    
     initialAnimations();
     $(".button-collapse").sideNav();
      $('.datepicker').pickadate({
@@ -7,11 +59,12 @@ $(document).ready(function(){
   });
     $('.todoEntryButton').on("click", function(){
       var todoEntryFieldLength = $('.todoEntry').val().length;
-            if(todoEntryFieldLength > 0){
-                 var todoText = $('.todoEntry').val();
-                 var todoListLength = $('.todoList').find('div').length;
-                 var todoListLengthNew = todoListLength+1;
-                 CreateTodo(todoText,todoListLengthNew);   
+           if(todoEntryFieldLength > 0){
+               var todoText = $('.todoEntry').val();
+           //      var todoListLength = $('.todoList').find('div').length;
+             //    var todoListLengthNew = todoListLength+1;
+               //  CreateTodo(todoText,todoListLengthNew);   
+             toDone.webdb.addTodo(todoText);
             }else{
               Materialize.toast('Todo Description is empty! enter a Description', 4000)   
             }
