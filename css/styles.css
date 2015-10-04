@@ -4,6 +4,14 @@ html, body{
     margin:0;
     background:#303030;
 }
+
+/* Toast Style Override */
+.toast{
+    background:rgb(39, 39, 39)!important;  
+}
+
+/*End Toast Style Override */
+
 /* End Global */
 
 /* NavBar / Side Nav */
@@ -73,7 +81,6 @@ input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly
     border:none;
     box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.3)!important;
     position:relative;
-    float:left;
 }
 /* Todo Entry Styling End */
 .darkCard{
