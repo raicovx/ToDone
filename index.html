@@ -10,27 +10,40 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"> 
       
-       
+       <script src="js/modernizr-custom.js"></script>
      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
  <!--Import Materialize JS file -->
      <script type="text/javascript" src="js/materialize.min.js"></script>
  <!--Import Velocity.JS -->
      <script src="https://cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script> 
 <script>
+    if(Modernizr.websqldatabase){
     function loadTodoItems(tx, rs) {
       var rowOutput = "";
         $('.todoList').html('');
       var todoItems = $('.todoList');
+        
       for (var i=0; i < rs.rows.length; i++) {
         //rowOutput += renderTodo(rs.rows.item(i));
-        
+          var delay = i * 100;
+         var todoListLength = $('.todoList').find('div').length;
         $('.todoList').append(renderTodo(rs.rows.item(i)));
+        initialCardAnimation(todoListLength, delay);
       }
 
       //todoItems.innerHTML = rowOutput;
     }
+    function loadTodoItem(tx, rs) {
+      var todoItems = $('.todoList');
+        $('.todoList').append(renderTodo(rs.rows.item(i)));
+        var todoListLength = $('.todoList').find('div').length;
+        initialCardAnimation(todoListLength, delay);
+      }
+
     function renderTodo(row) {
-      return "<div class=\"card darkCard\">" + row.todo + 
+        var todoListLength = $('.todoList').find('div').length;
+        var todoListLengthNew = todoListLength + 1;
+      return "<div class=\"card darkCard todoItem-"+todoListLengthNew+"\" style=\"display:none\">" + row.todo + 
              " [<a href='javascript:void(0);' onclick=\'toDone.webdb.deleteTodo(" + 
              row.ID +");\'>Delete</a>]</div>";
     }
@@ -39,6 +52,7 @@
           toDone.webdb.createTable();
           toDone.webdb.getAllTodoItems(loadTodoItems);
         }
+    }
 </script>
 </head>
 <body onload="init();">

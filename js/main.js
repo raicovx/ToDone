@@ -17,12 +17,22 @@ $(document).ready(function(){
         toDone.webdb.getAllTodoItems(loadTodoItems);
     }
     
+    toDone.webdb.onSingleItemAddSuccess = function(tx, r) {
+        // re-render the data.
+        toDone.webdb.getLastTodoItem(loadTodoItem);
+    }
+    
+     toDone.webdb.onSingleItemDeleteSuccess = function(tx, r) {
+        // re-render the data.
+       removeTodo(id)
+    }
     toDone.webdb.createTable = function() {
         var db = toDone.webdb.db;
         db.transaction(function(tx) {
         tx.executeSql("CREATE TABLE IF NOT EXISTS " + "todo(ID INTEGER PRIMARY KEY ASC, todo TEXT, added_on DATETIME)", []);
         });
     }
+    
     toDone.webdb.addTodo = function(todoText) {
       var db = toDone.webdb.db;
       db.transaction(function(tx){
@@ -33,6 +43,7 @@ $(document).ready(function(){
         toDone.webdb.onError);
       });
     }
+    
     toDone.webdb.getAllTodoItems = function(renderFunc) {
       var db = toDone.webdb.db;
       db.transaction(function(tx) {
@@ -41,8 +52,16 @@ $(document).ready(function(){
       });
     }
     
+    toDone.webdb.getLastTodoItem = function(renderFunc){
+        var db = toDone.webdb.db;
+        db.transaction(function(tx){
+            tx.executeSql("SELECT TOP 1 * FROM todo ORDER BY ID DESC", [], renderFunc, toDone.webdb.db.onError);  
+        });
+    }
+                       
     toDone.webdb.deleteTodo = function(id) {
       var db = toDone.webdb.db;
+        console.log(id);
       db.transaction(function(tx){
         tx.executeSql("DELETE FROM todo WHERE ID=?", [id],
             toDone.webdb.onSuccess,
@@ -76,13 +95,14 @@ function initialAnimations(){
     $('.navBar nav').velocity({ top: "0" },{ duration: 800 });
 }
 
-function initialCardAnimation(todoItemNumber){
-  $('.todoItem-'+todoItemNumber).velocity({scale: "1"},{ duration: 800});  
+function initialCardAnimation(todoItemNumber, delay){
+  $('.todoItem-'+todoItemNumber).hide().velocity({scale: "0.5"},{duration:0}).show();
+  $('.todoItem-'+todoItemNumber).velocity({scale: "1"},{ duration: 800, delay: delay+"s"});  
 }
 
 function CreateTodo(todoText,todoListLengthNew){
     $('.todoList').append("<div class=\"card darkCard todoItem-"+todoListLengthNew+"\" style=\"display:none\">"+todoText+"</div>");
-    $('.todoItem-'+todoListLengthNew).hide().velocity({scale: "0.5"},{duration:0}).show();
+   
     $('.todoEntry').val("");
     initialCardAnimation(todoListLengthNew);
 }
