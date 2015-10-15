@@ -100,6 +100,18 @@ border-bottom: 1px solid #303030;
    position:relative;
    float:left;   
 }
+.picker__date-display{
+    background-color:#4e64e0!important;   
+}
+.picker__weekday-display{
+    background-color:#3749ac!important; 
+}
+.picker__close, .picker__today{
+       color:#4e64e0!important;
+}
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected{
+    background-color: #4e64e0!important;
+}
 input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
     border-bottom:none!important;
     box-shadow: none;
