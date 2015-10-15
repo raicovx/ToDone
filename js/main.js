@@ -17,15 +17,6 @@ $(document).ready(function(){
         toDone.webdb.getAllTodoItems(loadTodoItems);
     }
     
-    toDone.webdb.onSingleItemAddSuccess = function(tx, r) {
-        // re-render the data.
-        toDone.webdb.getLastTodoItem(loadTodoItem);
-    }
-    
-     toDone.webdb.onSingleItemDeleteSuccess = function(tx, r) {
-        // re-render the data.
-       removeTodo(id)
-    }
     toDone.webdb.createTable = function() {
         var db = toDone.webdb.db;
         db.transaction(function(tx) {
@@ -55,7 +46,7 @@ $(document).ready(function(){
     toDone.webdb.getLastTodoItem = function(renderFunc){
         var db = toDone.webdb.db;
         db.transaction(function(tx){
-            tx.executeSql("SELECT TOP 1 * FROM todo ORDER BY ID DESC", [], renderFunc, toDone.webdb.db.onError);  
+            tx.executeSql("SELECT TOP 1 * FROM todo ORDER BY ID ASC", [], renderFunc, toDone.webdb.db.onError);  
         });
     }
                        
@@ -84,6 +75,7 @@ $(document).ready(function(){
              //    var todoListLengthNew = todoListLength+1;
                //  CreateTodo(todoText,todoListLengthNew);   
              toDone.webdb.addTodo(todoText);
+               $('.todoEntry').val('');
             }else{
               Materialize.toast('Todo Description is empty! enter a Description', 4000)   
             }
@@ -96,8 +88,11 @@ function initialAnimations(){
 }
 
 function initialCardAnimation(todoItemNumber, delay){
-  $('.todoItem-'+todoItemNumber).hide().velocity({scale: "0.5"},{duration:0}).show();
-  $('.todoItem-'+todoItemNumber).velocity({scale: "1"},{ duration: 800, delay: delay+"s"});  
+    var thisTodo = $('.todoItem-'+todoItemNumber);
+    thisTodo.hide();
+    thisTodo.velocity({scale: "0.5"},{duration:0});
+    thisTodo.show();
+    thisTodo.velocity({scale: "1"},{ duration: 800, delay: delay+"s"});  
 }
 
 function CreateTodo(todoText,todoListLengthNew){

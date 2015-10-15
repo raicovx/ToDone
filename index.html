@@ -2,7 +2,7 @@
 <head>
          <!-- Compiled and minified CSS -->
  <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <!--   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
  <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
       <link rel="stylesheet" href="css/styles.css"/>   
@@ -20,30 +20,30 @@
     if(Modernizr.websqldatabase){
     function loadTodoItems(tx, rs) {
       var rowOutput = "";
+       var currentLength = $('.todoList').length;
         $('.todoList').html('');
       var todoItems = $('.todoList');
-        
-      for (var i=0; i < rs.rows.length; i++) {
+      if(currentLength != 0){  
+      for (var i=currentLength; i < rs.rows.length; i++) {
         //rowOutput += renderTodo(rs.rows.item(i));
-          var delay = i * 100;
+         var delay = i * 100;
          var todoListLength = $('.todoList').find('div').length;
         $('.todoList').append(renderTodo(rs.rows.item(i)));
-        initialCardAnimation(todoListLength, delay);
+  //      if(todoListLength == (i+1)){
+        
+    //    }
       }
-
-      //todoItems.innerHTML = rowOutput;
+          var newLength = $('.todoList').find('div').length;
+          initialCardAnimation(newLength, delay);
+      }
+      todoItems.innerHTML = rowOutput;
     }
-    function loadTodoItem(tx, rs) {
-      var todoItems = $('.todoList');
-        $('.todoList').append(renderTodo(rs.rows.item(i)));
-        var todoListLength = $('.todoList').find('div').length;
-        initialCardAnimation(todoListLength, delay);
-      }
+
 
     function renderTodo(row) {
         var todoListLength = $('.todoList').find('div').length;
         var todoListLengthNew = todoListLength + 1;
-      return "<div class=\"card darkCard todoItem-"+todoListLengthNew+"\" style=\"display:none\">" + row.todo + 
+      return "<div class=\"card darkCard todoItem-"+todoListLengthNew+"\">" + row.todo + 
              " [<a href='javascript:void(0);' onclick=\'toDone.webdb.deleteTodo(" + 
              row.ID +");\'>Delete</a>]</div>";
     }
