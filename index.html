@@ -18,7 +18,7 @@
      <script src="https://cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script> 
 <script>
     if(Modernizr.websqldatabase){
-    function loadTodoItems(tx, rs) {
+    function loadTodoItem(tx, rs) {
       var rowOutput = "";
        var currentLength = $('.todoList').length;
         $('.todoList').html('');
@@ -26,16 +26,34 @@
       if(currentLength != 0){  
       for (var i=currentLength; i < rs.rows.length; i++) {
         //rowOutput += renderTodo(rs.rows.item(i));
-         var delay = i * 100;
+         var delay = 100;
          var todoListLength = $('.todoList').find('div').length;
         $('.todoList').append(renderTodo(rs.rows.item(i)));
-  //      if(todoListLength == (i+1)){
-        
-    //    }
       }
           var newLength = $('.todoList').find('div').length;
           initialCardAnimation(newLength, delay);
       }
+      todoItems.innerHTML = rowOutput;
+    } 
+        
+    function removeTodoItem(id){
+        $("."+id).remove();
+    }
+        
+     function loadTodoItems(tx, rs) {
+      var rowOutput = "";
+       var currentLength = $('.todoList').length;
+        $('.todoList').html('');
+      var todoItems = $('.todoList');
+      for (var i=1; i < rs.rows.length; i++) {
+        //rowOutput += renderTodo(rs.rows.item(i));
+         var delay = i * 100;
+         var todoListLength = $('.todoList').find('div').length;
+        $('.todoList').append(renderTodo(rs.rows.item(i)));
+          initialCardAnimation(i, delay);
+      }
+          
+      
       todoItems.innerHTML = rowOutput;
     }
 
@@ -43,7 +61,7 @@
     function renderTodo(row) {
         var todoListLength = $('.todoList').find('div').length;
         var todoListLengthNew = todoListLength + 1;
-      return "<div class=\"card darkCard todoItem-"+todoListLengthNew+"\">" + row.todo + 
+      return "<div class=\"card darkCard todoItem-"+todoListLengthNew+" "+row.ID+"\">" + row.todo + 
              " [<a href='javascript:void(0);' onclick=\'toDone.webdb.deleteTodo(" + 
              row.ID +");\'>Delete</a>]</div>";
     }

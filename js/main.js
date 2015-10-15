@@ -15,6 +15,15 @@ $(document).ready(function(){
     toDone.webdb.onSuccess = function(tx, r) {
         // re-render the data.
         toDone.webdb.getAllTodoItems(loadTodoItems);
+    } 
+    
+    toDone.webdb.onSingleItemAddSuccess = function(tx, r) {
+        // re-render the data.
+        toDone.webdb.getAllTodoItems(loadTodoItem);
+    }
+    
+    toDone.webdb.onSingleItemDeleteSuccess = function(tx, r){
+        toDone.webdb.getAllTodoItems(removeTodoItem);   
     }
     
     toDone.webdb.createTable = function() {
@@ -30,7 +39,7 @@ $(document).ready(function(){
         var addedOn = new Date();
         tx.executeSql("INSERT INTO todo(todo, added_on) VALUES (?,?)",
         [todoText, addedOn],
-        toDone.webdb.onSuccess,
+        toDone.webdb.onSingleItemAddSuccess,
         toDone.webdb.onError);
       });
     }
@@ -52,10 +61,9 @@ $(document).ready(function(){
                        
     toDone.webdb.deleteTodo = function(id) {
       var db = toDone.webdb.db;
-        console.log(id);
       db.transaction(function(tx){
         tx.executeSql("DELETE FROM todo WHERE ID=?", [id],
-            toDone.webdb.onSuccess,
+            removeTodoItem(id),
             toDone.webdb.onError);
         });
     }
@@ -85,8 +93,21 @@ $(document).ready(function(){
 
 function initialAnimations(){
     $('.navBar nav').velocity({ top: "0" },{ duration: 800 });
+    var listLength = $('.todoList').find('div').length;
+    for( i = 0; i < listLength; i++){
+        console.log(i);
+        var currentCard = i+1;
+        var delay = 2 * i;
+        initialAllCardAnimation(currentCard, delay);   
+    }
 }
-
+function initialAllCardAnimation(todoItemNumber, delay){
+    var thisTodo = $('.todoItem-'+todoItemNumber);
+    thisTodo.hide();
+    thisTodo.velocity({scale: "0.5"},{duration:0});
+    thisTodo.show();
+    thisTodo.velocity({scale: "1"},{ duration: 800, delay: delay+"s"});  
+}
 function initialCardAnimation(todoItemNumber, delay){
     var thisTodo = $('.todoItem-'+todoItemNumber);
     thisTodo.hide();
